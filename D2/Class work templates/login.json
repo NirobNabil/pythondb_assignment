@@ -1,0 +1,28 @@
+{
+ "007":{
+     "pswd" : "123",
+     "name" : "Ali",
+     "uType": "Staff",
+     "dept" : "Computing",
+     "loadBooks" : [],
+     "noLostBooks": true,
+     "noBorrowedBooks": true,
+     "noReservedBooks": true,
+     "noReturnedBooks": true,
+     "fineAmount": 0
+ },
+ "rita": {
+     
+     "pswd" : "1234",
+     "uType" : "Student",
+     "name" : "Ali2",
+     "sclass" : "D2",
+     "loadBooks": [],
+     "noLostBooks": true,
+     "noBorrowedBooks": true,
+     "noReservedBooks": true,
+     "noReturnedBooks": true,
+     "fineAmount": 0
+     }
+ 
+ }

@@ -1,0 +1,40 @@
+{
+    "007": {
+        "id": "007",
+        "password": "abc",
+        "name": "Stish",
+        "l_books_borrowed": [],
+        "l_books_reserved": [],
+        "l_return_books": [],
+        "l_lost_books": [],
+        "fine": 0,
+        "role": "staff",
+        "username": "stish"
+    },
+
+    "008": {
+        "id": "008",
+        "password": "abc",
+        "name": "Rita",
+        "l_books_borrowed": [],
+        "l_books_reserved": [],
+        "history_return": [],
+        "l_lost_Books": [],
+        "role": "student",
+        "fine": 0,
+        "username": "rota"
+    },
+
+    "009": {
+        "id": "009",
+        "password": "abc",
+        "name": "Mr X",
+        "l_books_borrowed": [],
+        "l_books_reserved": [],
+        "history_return": [],
+        "l_lost_Books": [],
+        "role": "librarian",
+        "fine": 0,
+        "username": "x"
+    }
+}
