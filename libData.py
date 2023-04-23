@@ -29,13 +29,10 @@ class LibData:
 
     @staticmethod
     def returnBook(userId, bookId):
-        ava = Book.checkAvailbality(bookId)
 
         x = cursor.execute( 'select date from borrow where userId=:uid and bookId=:bid', {'uid':userId, 'bid':bookId})
         x = x.fetchone()
 
-        print( x[0] )
-        print( type(x[0]) )
 
         time_difference = datetime.datetime.now() - x[0]
         if( time_difference.days >= 0 ):
@@ -43,13 +40,17 @@ class LibData:
             x = x.fetchone()
             previous_fine = x[0]
 
-            print(previous_fine)
+            print("previous fine: ", previous_fine)
             cursor.execute('''
                 update user
                 set fine = :newFine
                 where id = :userId
             ''', { 'userId': userId, 'newFine': previous_fine + 100})
-            conn.commit()
+
+        cursor.execute('''
+            delete from borrow where userId=:uid and bookId=:bid
+        ''', {'uid':userId, 'bid':bookId})
+        conn.commit()
 
         # cursor.execute("""
         #             delete from borrow where userId=:uid and bookId=:bid

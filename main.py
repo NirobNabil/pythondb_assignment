@@ -9,12 +9,17 @@ from librarian import Librarian
 
 
 while True:
-    loginDict = Member.login("rota", "abc")
+
+    print("----------------------- LOGIN -------------------------")
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+
+    loginDict = Member.login(username, password)
     if loginDict['isExist'] == False:
         print('Invalid Credentials!')
         continue
 
-    if loginDict['role'] == 'librarian':    
+    if loginDict['role'] == 'librarian':
         Librarian.menu()
     else:
         member = Member(loginDict['id'])    

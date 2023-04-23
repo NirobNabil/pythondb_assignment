@@ -28,9 +28,6 @@ class Member:
                     'role': result[2]}
 
 
-    def register():
-        pass
-    
     @classmethod
     def load_accounts(cls):
         import sqlite3
@@ -45,7 +42,7 @@ class Member:
             for uid, u in acc.items():
                 c.execute("""
                         INSERT INTO user
-                        (id, password, name, role, fine, username)
+                        (password, name, role, fine, username)
                         VALUES(:id, :password, :name, :role, :fine, :username)
                     """,{'id':int(uid),'name':u["name"],'password':u["password"],'fine': u["fine"],'role': u['role'], 'username': u['username']})
 
@@ -53,6 +50,19 @@ class Member:
             
             conn.commit()
 
+
+    def pay_fine(self):
+        import sqlite3
+        conn = sqlite3.connect("mydb.db")
+        c = conn.cursor()
+        x = c.execute( 'select fine from user where id=:uid', {'uid':self.Id})
+        fine = x.fetchone()[0]
+        print("Your outstanding fine is ", fine)
+        amount = input("Enter the amount you want to pay: ")
+        amount = int(amount)
+        c.execute("update user set fine=:newFine where id=:uid", {'uid': self.Id, 'newFine': fine-amount})
+        conn.commit()
+        print("Fine paid succesfully")
 
     def borrow(self):
         isbn = input('Please enter isbn: ')
@@ -115,6 +125,7 @@ class Member:
                 2. Borrow a Book
                 3. Return a Book
                 4. Search
+                5. pay fine
                 q. quit
                 """)
             choice = input("select your choice: ")
@@ -123,6 +134,7 @@ class Member:
             "2": self.borrow,
             "3": self.returnBook,
             "4": self.searchBook,
+            "5": self.pay_fine,
             "q": 'q'}.get(choice,None)
             if f == 'q':
                 break
@@ -135,5 +147,5 @@ class Member:
         pass
 
 
-# Memebr.load_accounts()
+# Member.load_accounts()
 # print(Member.login("rota", "abc"))
